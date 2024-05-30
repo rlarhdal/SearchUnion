@@ -12,6 +12,8 @@ public class PlayerConditions : MonoBehaviour, IDamagable
 {
     public UIConditions uiCondition;
 
+    public bool isDead;
+
     Condition health { get { return uiCondition.health; } }
     Condition stamina { get { return uiCondition.stamina; } }
 
@@ -20,10 +22,6 @@ public class PlayerConditions : MonoBehaviour, IDamagable
 
     void Update()
     {
-        // 플레이어가 뛰고 있는 중에
-        // 스테미나 감소
-        // 스테미나 == 0이면 뛰지 못함
-
         stamina.Add(stamina.regenRate * Time.deltaTime);
 
         if(health.curValue == 0.0f)
@@ -52,7 +50,6 @@ public class PlayerConditions : MonoBehaviour, IDamagable
     {
         if(stamina.curValue - amount < 0)
         {
-            Debug.Log("false");
             return false;
         }
         stamina.Subtract(amount);
@@ -62,6 +59,9 @@ public class PlayerConditions : MonoBehaviour, IDamagable
     private void Die()
     {
         Debug.Log("플레이어가 죽었다.");
+        //GameManager.Instance.GameOver();
+        isDead = true;
+        CharacterManager.Instance.player.controller.canLook = false;
     }
 
 }

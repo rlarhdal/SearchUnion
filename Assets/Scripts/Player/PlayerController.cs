@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,14 +30,27 @@ public class PlayerController : MonoBehaviour
     public float lookSensitivity; // 카메라 감도
     private Vector2 mouseDelta; // input 값으로 받아오는 마우스 delta 값
 
+    [Header("# UI")]
+    public GameObject intro;
+    public GameObject outTro;
+    public TextMeshProUGUI resultText;
+
     [HideInInspector]
     public bool canLook = true;
     [HideInInspector]
     public bool isRun = false;
     [HideInInspector]
     public bool isCrouch = false;
+    [HideInInspector]
+    public bool playing = false;
+
+    //private Animator animator;
 
     public Action inventory;
+    public Action move;
+    public Action run;
+    public Action jump;
+
 
     private Rigidbody rigid;
 
@@ -46,11 +60,33 @@ public class PlayerController : MonoBehaviour
         speed = moveSpeed;
         originPosY = transform.position.y;
         cam = Camera.main;
+        //animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 0.0f;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void Update()
+    {
+        if(canLook)
+        {
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            if(CharacterManager.Instance.player.conditions.isDead == true)
+            {
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Time.timeScale = 0.2f;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -59,6 +95,8 @@ public class PlayerController : MonoBehaviour
         {
             if (CharacterManager.Instance.player.conditions.UseStamina(useStamina))
             {
+                run?.Invoke();
+                //animator.SetBool("IsRunning", true);
                 speed = runSpeed;
             }
             else
@@ -77,10 +115,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnStart()
+    {
+        intro.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
+    }
+
+    public void Result()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0f;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
+
     public void OnMoveInput(InputAction.CallbackContext context) // inputsystem에서 move 했을 때 값 받아오기
     {
         if(context.phase == InputActionPhase.Performed)
         {
+            move?.Invoke();
+            //animator.SetBool("IsWalking", true);
             curMovementInput = context.ReadValue<Vector2>();
         }
         else if(context.phase == InputActionPhase.Canceled)
@@ -98,6 +156,8 @@ public class PlayerController : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Started && IsGrounded())
         {
+            jump?.Invoke();
+            //animator.SetTrigger("Jump");
             rigid.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
         }
     }
@@ -145,6 +205,7 @@ public class PlayerController : MonoBehaviour
 
     private void ToggleCursor()
     {
+        Time.timeScale = 0;
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;

@@ -14,8 +14,20 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        CharacterManager.Instance.player.itemData = data;
-        CharacterManager.Instance.player.addItem?.Invoke();
-        Destroy(gameObject);
+        if(data.type == ItemType.Interactable)
+        {
+            OpenDoor();
+        }
+        else
+        {
+            CharacterManager.Instance.player.itemData = data;
+            CharacterManager.Instance.player.addItem?.Invoke();
+            Destroy(gameObject);
+        }
+    }
+
+    private void OpenDoor()
+    {
+        gameObject.GetComponent<Door>().ChangeDoor();
     }
 }

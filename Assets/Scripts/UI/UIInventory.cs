@@ -44,6 +44,23 @@ public class UIInventory : MonoBehaviour
         }
 
         ClearSelectedItemWindow();
+        Init();
+    }
+
+    void Init()
+    {
+        ItemData data = CharacterManager.Instance.player.itemData;
+
+        ItemSlots emptySlot = GetEmptySlot();
+
+        if (emptySlot != null)
+        {
+            emptySlot.item = data;
+            emptySlot.quantity = 3;
+            UpdateUI();
+            CharacterManager.Instance.player.itemData = null;
+            return;
+        }
     }
 
     public void Toggle()
@@ -60,7 +77,10 @@ public class UIInventory : MonoBehaviour
 
     public void AddItem()
     {
+
         ItemData data = CharacterManager.Instance.player.itemData;
+
+        CharacterManager.Instance.player.inventoryItems.Add(data);
 
         if(data.canStack)
         {

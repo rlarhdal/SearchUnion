@@ -10,17 +10,29 @@ public class Condition : MonoBehaviour
     public float regenRate;
     public float decayRate;
     public Image uiBar;
+    public Image uiBg;
+    public Color color;
 
-    // Start is called before the first frame update
     void Start()
     {
         curValue = startValue;
+        color = uiBg.color;
     }
-
-    // Update is called once per frame
+     
     void Update()
     {
         uiBar.fillAmount = GetPercentage();
+
+        if (GetPercentage() < 1f)
+        {
+            uiBg.color = color;
+            uiBar.color = color;
+        }
+        else
+        {
+            uiBg.color = Color.clear;
+            uiBar.color = Color.clear;
+        }
     }
 
     private float GetPercentage()

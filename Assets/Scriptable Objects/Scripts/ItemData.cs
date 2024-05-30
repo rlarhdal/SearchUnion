@@ -6,7 +6,8 @@ public enum ItemType
 {
     Quest,
     Equipable,
-    Consumable
+    Consumable,
+    Interactable
 }
 
 public enum ConsumableType
