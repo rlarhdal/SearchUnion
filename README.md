@@ -36,14 +36,14 @@
 |![image](https://github.com/rlarhdal/SearchUnion/assets/93560053/60b49a95-aec3-4e7f-8c20-e064ce33fc83)|![image](https://github.com/rlarhdal/SearchUnion/assets/93560053/8e4ed335-3d62-489b-8178-905514a21033)
 |:---:|:---:|
 |시작 화면|결과 화면|
-|[시작 관련 스크립트]()|[설정 관련 스크립트]()|
+|간단한 설명 및 게임 방법|게임 결과 출력|
 |![image](https://github.com/rlarhdal/SearchUnion/assets/93560053/197e90f0-53b1-4eb7-8c0d-cbacefd4c84d)|![image](https://github.com/rlarhdal/SearchUnion/assets/93560053/05fba57a-1547-4abb-8a29-09ab06724c7d)|
 |손전등 On|손전등 Off|
-|[난이도 관련 스크립트]()|[게임 관련 스크립트]()|
-|![332812349-f2646467-2374-449c-adc1-7b8a6397f4e1](https://github.com/rlarhdal/BlockBuster/assets/167050340/c2253f1e-76f7-4192-bc44-d9667349525f)|![332812756-88e0d508-4555-40d9-bfb4-15378aff65c5](https://github.com/rlarhdal/BlockBuster/assets/167050340/66234f93-7fc3-4ea5-94db-4da0982e697e)|
-|일시정지 화면|게임 재개 화면|
-|[생명관리 관련 스크립트]()|[생명관리 관련 스크립트]()|
-|![332813572-246a239d-c5e7-4024-92bc-d2366c7502d6](https://github.com/rlarhdal/BlockBuster/assets/167050340/66ac2fbd-37db-4a5b-b50f-86deb8743dfa)|![332814034-8535e168-9e38-470a-a6ab-7b0e6c9b8fa5](https://github.com/rlarhdal/BlockBuster/assets/167050340/69e3ef26-beb4-4e2a-a720-4ccf75f07a23)|
-|보스 화면|클리어 화면|
-|[보스 관련 스크립트]()|[게임매니저 스크립트]()|
+|F키로 상호작용|F키로 상호작용|
+|![제목 없음](https://github.com/rlarhdal/SearchUnion/assets/93560053/11ec6d7e-52cc-49e2-94fe-6c83f0cd1b5f)|![image](https://github.com/rlarhdal/SearchUnion/assets/93560053/811a7b6b-42c1-4cdb-8b17-a617e0ee9bfb)|
+|몬스터 추격|맵 상호작용(갈색문만)|
+|NavMesh를 이용한 몬스터 추격|맵에 있는 갈색 문을 열고 닫을 수 있음|
+|![image](https://github.com/rlarhdal/SearchUnion/assets/93560053/0a0d154b-70ef-4d7f-be4f-4be88c27ce45)|![image](https://github.com/rlarhdal/SearchUnion/assets/93560053/72ec88ed-90e9-4d55-8f37-20eb1a4d7a6b)|
+|아이템 획득|인벤토리|
+|상호작용 가능한 아이템에 crosshair 변경 및 획득|Tab키를 이용하여 인벤토리 확인, 퀘스트 아이템과 사용 가능한 아이템 확인|
 
